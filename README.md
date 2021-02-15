@@ -23,6 +23,4 @@ cd ..
 bash build-glog.sh
 ```
 
-If you want static libraries instead of shared libraries,
-
-set: `DBUILD_SHARED_LIBS=OFF` and `-DANDROID_STL="c++_static"` instead of `-DANDROID_STL="c++_shared"` in both scripts.
+If you want static libraries instead of shared libraries, set: `DBUILD_SHARED_LIBS=OFF` and `-DANDROID_STL="c++_static"` instead of `-DANDROID_STL="c++_shared"` in both scripts.
