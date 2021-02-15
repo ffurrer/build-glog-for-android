@@ -33,7 +33,7 @@ cd "${BUILD_DIR}"
 function build_glog {
   ABI=$1
 
-  echo "Building Opencv for $ABI"
+  echo "Building glog for $ABI"
   mkdir build_$ABI
   cd build_$ABI
 
@@ -46,7 +46,8 @@ function build_glog {
       -DANDROID_ABI="$ABI" \
       -DCMAKE_BUILD_TYPE=Release \
       -DBUILD_TESTING=OFF \
-      -DANDROID_STL="c++_static" \
+      -DBUILD_SHARED_LIBS=ON \
+      -DANDROID_STL="c++_shared" \
       -Dgflags_DIR="../gflags/build/build_${ABI}" \
       ../../
   make -j${N_JOBS}
@@ -60,5 +61,3 @@ build_glog arm64-v8a
 
 cd "${WD}"
 #rm -rf "${BUILD_DIR}"
-
-

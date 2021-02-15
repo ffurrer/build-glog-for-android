@@ -1,5 +1,5 @@
 # build-glog-for-android
-build glog for android with ndk
+Build shared libraries of glog and gflags for android with ndk.
 
 ## How To
 Export your android ndk root, pointing to the location of your ndk, could be something like below.
@@ -22,3 +22,7 @@ cd ..
 ## 设置NDK_ROOT, 设置SDK路径
 bash build-glog.sh
 ```
+
+If you want static libraries instead of shared libraries,
+
+set: `DBUILD_SHARED_LIBS=OFF` and `-DANDROID_STL="c++_static"` instead of `-DANDROID_STL="c++_shared"` in both scripts.
