@@ -1,5 +1,3 @@
-/* Generated from config.h.in during build configuration using CMake. */
-
 // Note: This header file is only used internally. It is not part of public interface!
 
 #ifndef GFLAGS_CONFIG_H_
@@ -9,70 +7,15 @@
 // ---------------------------------------------------------------------------
 // System checks
 
-// Define if you build this library for a MS Windows OS.
-/* #undef OS_WINDOWS */
-
-// Define if you have the <stdint.h> header file.
-#define HAVE_STDINT_H
-
-// Define if you have the <sys/types.h> header file.
-#define HAVE_SYS_TYPES_H
-
-// Define if you have the <inttypes.h> header file.
-#define HAVE_INTTYPES_H
-
-// Define if you have the <sys/stat.h> header file.
-#define HAVE_SYS_STAT_H
-
-// Define if you have the <unistd.h> header file.
-#define HAVE_UNISTD_H
-
-// Define if you have the <fnmatch.h> header file.
-#define HAVE_FNMATCH_H
-
-// Define if you have the <shlwapi.h> header file (Windows 2000/XP).
-/* #undef HAVE_SHLWAPI_H */
-
-// Define if you have the strtoll function.
-#define HAVE_STRTOLL
-
-// Define if you have the strtoq function.
-/* #undef HAVE_STRTOQ */
-
-// Define if you have the <pthread.h> header file.
-#define HAVE_PTHREAD
-
-// Define if your pthread library defines the type pthread_rwlock_t
-#define HAVE_RWLOCK
+// CMake build configuration is written to defines.h file, unused by Bazel build
+#if !defined(GFLAGS_BAZEL_BUILD)
+#  include "defines.h"
+#endif
 
 // gcc requires this to get PRId64, etc.
 #if defined(HAVE_INTTYPES_H) && !defined(__STDC_FORMAT_MACROS)
 #  define __STDC_FORMAT_MACROS 1
 #endif
-
-// ---------------------------------------------------------------------------
-// Package information
-
-// Name of package.
-#define PACKAGE gflags
-
-// Define to the full name of this package.
-#define PACKAGE_NAME gflags
-
-// Define to the full name and version of this package.
-#define PACKAGE_STRING gflags 2.2.1
-
-// Define to the one symbol short name of this package.
-#define PACKAGE_TARNAME gflags-2.2.1
-
-// Define to the version of this package.
-#define PACKAGE_VERSION 2.2.1
-
-// Version number of package.
-#define VERSION PACKAGE_VERSION
-
-// Define to the address where bug reports for this package should be sent.
-#define PACKAGE_BUGREPORT https://github.com/gflags/gflags/issues
 
 // ---------------------------------------------------------------------------
 // Path separator
@@ -93,6 +36,8 @@
 #ifndef GFLAGS_DLL_DECL
 #  if GFLAGS_IS_A_DLL && defined(_MSC_VER)
 #    define GFLAGS_DLL_DECL __declspec(dllexport)
+#  elif defined(__GNUC__) && __GNUC__ >= 4
+#    define GFLAGS_DLL_DECL __attribute__((visibility("default")))
 #  else
 #    define GFLAGS_DLL_DECL
 #  endif
